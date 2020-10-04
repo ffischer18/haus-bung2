@@ -50,6 +50,22 @@ public class NumberTester {
             }
         };
 
+        // Testet ob die Zahl eine Primzahl ist
+        primeTester = (n)
+                -> {
+            // Wenn n kleiner/gleich 2 wird es auf 2 gesetzt (2 kleinste Primzahl)
+            if (n <= 2) {
+                return (n == 2);
+            }
+            // Es wird geprüft ob n ein Vielfaches von i ist und ob die zahl durch 2 teilbar ist
+            for (int i = 2; i * i <= n; i++) {
+                if (n % i == 0) {
+                    return false;
+                }
+            }
+            return true;
+        };
+        
         try (BufferedReader br = new BufferedReader(new InputStreamReader(new FileInputStream(new File(fileName))));) {
             // liest die erste Zeile und speichert sie ab
             String line1 = br.readLine();
