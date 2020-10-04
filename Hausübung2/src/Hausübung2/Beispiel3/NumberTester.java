@@ -65,31 +65,30 @@ public class NumberTester {
             }
             return true;
         };
-        
+
         // Testet ob die Zahl ein Palindrom ist (vorwärt/rückwärts gelesen die gleiche zahl ergibt)
         palindromeTester = (n) -> {
             int originalInteger = n;
             int reversedInteger = 0;
-            
+
             // Solange n ungleich 0 ist wird im remainder der letzte Wert einer Zahl berechnet
             // Der remainder wird zu reversedInteger addiert sodass der er Wert zum nächsten Stellenwert addiert werden kann
             // *10 (Zehnerstelle, Hunderterstelle, ..)
             // Danach wird der letzte Stellenwert gelöscht (/10)
-            while(n != 0){
+            while (n != 0) {
                 int remainder = n % 10;
                 reversedInteger = reversedInteger * 10 + remainder;
                 n = n / 10;
             }
-            
+
             // vergleicht beide Integer
-            if(originalInteger == reversedInteger){
+            if (originalInteger == reversedInteger) {
                 return true;
-            }
-            else{
+            } else {
                 return false;
             }
         };
-        
+
         try (BufferedReader br = new BufferedReader(new InputStreamReader(new FileInputStream(new File(fileName))));) {
             // liest die erste Zeile und speichert sie ab
             String line1 = br.readLine();
@@ -99,10 +98,53 @@ public class NumberTester {
             }
 
             // liest n Zeilen und speichert die Werte ab
-            String[] lines = br.readLine().split(" ");
-            while (lines != null) {
-                int proofes = Integer.parseInt(lines[0]);
-                int solutions = Integer.parseInt(lines[1]);
+            String lines = br.readLine();
+            while (!lines.isEmpty()) {
+                
+                String[] split = lines.split(" ");
+                int proofes = 0;
+                int solutions = 0;
+                while (split != null) {
+                    proofes = Integer.parseInt(split[0]);
+                    solutions = Integer.parseInt(split[1]);
+                }
+                // Testet die jeweiligen Fälle
+                switch(proofes){
+                    case 1:
+                        oddTester.testNumber(solutions);
+                        setOddEvenTester(oddTester);
+                        if(oddTester.equals(true)){
+                            System.out.println("Die Zahl ist gerade");
+                        } else {
+                            System.out.println("Die Zahl ist ungerade");
+                        }
+                        break;
+                        
+                    case 2:
+                        primeTester.testNumber(solutions);
+                        setPrimeTester(primeTester);
+                        if(primeTester.equals(true)){
+                            System.out.println("Die Zahl ist eine Primzahl");
+                        } else {
+                            System.out.println("Die Zahl ist keine Primzahl");
+                        }
+                        break;
+                        
+                    case 3:
+                        palindromeTester.testNumber(solutions);
+                        setPalindromeTester(palindromeTester);
+                        if(palindromeTester.equals(true)){
+                            System.out.println("Die Zahl ist eine Palindromzahl");
+                        } else {
+                            System.out.println("Die Zahl ist keine Palindromzahl");
+                        }
+                        break;
+                    
+                    default:
+                        System.out.println("Falsche überpüfung!");
+                        break;
+                }
+                
             }
 
         } catch (FileNotFoundException ex) {
