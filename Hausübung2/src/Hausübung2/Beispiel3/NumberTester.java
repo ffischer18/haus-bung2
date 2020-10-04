@@ -66,6 +66,30 @@ public class NumberTester {
             return true;
         };
         
+        // Testet ob die Zahl ein Palindrom ist (vorwärt/rückwärts gelesen die gleiche zahl ergibt)
+        palindromeTester = (n) -> {
+            int originalInteger = n;
+            int reversedInteger = 0;
+            
+            // Solange n ungleich 0 ist wird im remainder der letzte Wert einer Zahl berechnet
+            // Der remainder wird zu reversedInteger addiert sodass der er Wert zum nächsten Stellenwert addiert werden kann
+            // *10 (Zehnerstelle, Hunderterstelle, ..)
+            // Danach wird der letzte Stellenwert gelöscht (/10)
+            while(n != 0){
+                int remainder = n % 10;
+                reversedInteger = reversedInteger * 10 + remainder;
+                n = n / 10;
+            }
+            
+            // vergleicht beide Integer
+            if(originalInteger == reversedInteger){
+                return true;
+            }
+            else{
+                return false;
+            }
+        };
+        
         try (BufferedReader br = new BufferedReader(new InputStreamReader(new FileInputStream(new File(fileName))));) {
             // liest die erste Zeile und speichert sie ab
             String line1 = br.readLine();
