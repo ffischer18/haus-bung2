@@ -17,7 +17,7 @@ public class HalloJavamitForEach {
     
     public static void main(String[] args){
         List<String> list = new ArrayList<>();
-        
+        // Liste erzeugen und ausgeben
         for (String string : list) {
             System.out.println(string);
         }
