@@ -95,56 +95,58 @@ public class NumberTester {
             int testCases = 0;
             while (line1 != null) {
                 testCases = Integer.parseInt(line1);
-            }
 
-            // liest n Zeilen und speichert die Werte ab
-            String lines = br.readLine();
-            while (!lines.isEmpty()) {
-                
+                // liest n Zeilen und speichert die Werte ab
+                String lines = br.readLine();
+                if (lines == null) {
+                    System.exit(0);
+                }
+
                 String[] split = lines.split(" ");
                 int proofes = 0;
                 int solutions = 0;
-                while (split != null) {
-                    proofes = Integer.parseInt(split[0]);
-                    solutions = Integer.parseInt(split[1]);
-                }
+                proofes = Integer.parseInt(split[0]);
+                solutions = Integer.parseInt(split[1]);
                 // Testet die jeweiligen Fälle
-                switch(proofes){
+                switch (proofes) {
                     case 1:
-                        oddTester.testNumber(solutions);
-                        setOddEvenTester(oddTester);
-                        if(oddTester.equals(true)){
+                        if (oddTester.testNumber(solutions) == true) {
                             System.out.println("Die Zahl ist gerade");
-                        } else {
+                        } else if (oddTester.testNumber(solutions) == false) {
                             System.out.println("Die Zahl ist ungerade");
+                        } else {
+                            System.out.println("Fehler");
+                            System.exit(0);
                         }
                         break;
-                        
+
                     case 2:
-                        primeTester.testNumber(solutions);
-                        setPrimeTester(primeTester);
-                        if(primeTester.equals(true)){
+                        if (primeTester.testNumber(solutions) == true) {
                             System.out.println("Die Zahl ist eine Primzahl");
-                        } else {
+                        } else if (primeTester.testNumber(solutions) == false) {
                             System.out.println("Die Zahl ist keine Primzahl");
-                        }
-                        break;
-                        
-                    case 3:
-                        palindromeTester.testNumber(solutions);
-                        setPalindromeTester(palindromeTester);
-                        if(palindromeTester.equals(true)){
-                            System.out.println("Die Zahl ist eine Palindromzahl");
                         } else {
-                            System.out.println("Die Zahl ist keine Palindromzahl");
+                            System.out.println("Fehler");
+                            System.exit(0);
                         }
                         break;
-                    
+
+                    case 3:
+                        if (palindromeTester.testNumber(solutions) == true) {
+                            System.out.println("Die Zahl ist eine Palindromzahl");
+                        } else if (palindromeTester.testNumber(solutions) == false) {
+                            System.out.println("Die Zahl ist keine Palindromzahl");
+                        } else {
+                            System.out.println("Fehler");
+                            System.exit(0);
+                        }
+                        break;
+
                     default:
                         System.out.println("Falsche überpüfung!");
                         break;
                 }
-                
+
             }
 
         } catch (FileNotFoundException ex) {
