@@ -40,23 +40,31 @@ public class NumberTester {
     }
 
     public void testFile() {
+        // Testet ob die Zahl gerade oder ungerade ist
+        oddTester = (n)
+                -> {
+            if (n % 2 == 0) {
+                return true;
+            } else {
+                return false;
+            }
+        };
+
         try (BufferedReader br = new BufferedReader(new InputStreamReader(new FileInputStream(new File(fileName))));) {
             // liest die erste Zeile und speichert sie ab
             String line1 = br.readLine();
             int testCases = 0;
-            while(line1 != null){
+            while (line1 != null) {
                 testCases = Integer.parseInt(line1);
             }
-            
+
             // liest n Zeilen und speichert die Werte ab
             String[] lines = br.readLine().split(" ");
-            while(lines != null){
+            while (lines != null) {
                 int proofes = Integer.parseInt(lines[0]);
                 int solutions = Integer.parseInt(lines[1]);
             }
-            
-            
-            
+
         } catch (FileNotFoundException ex) {
             System.out.println("FileNotFoundException");
         } catch (IOException ex) {
