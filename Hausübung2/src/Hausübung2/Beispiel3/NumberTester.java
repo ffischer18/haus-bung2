@@ -6,12 +6,11 @@
 package Hausübung2.Beispiel3;
 
 import java.io.BufferedReader;
+import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.InputStreamReader;
-import java.util.ArrayList;
-import java.util.List;
 
 /**
  *
@@ -41,17 +40,22 @@ public class NumberTester {
     }
 
     public void testFile() {
-        try (BufferedReader br = new BufferedReader(new InputStreamReader(new FileInputStream(fileName)));) {
-            String line = br.readLine();
-            List<String> list = new ArrayList<>();
-            while(line != null){
-                //
+        try (BufferedReader br = new BufferedReader(new InputStreamReader(new FileInputStream(new File(fileName))));) {
+            // liest die erste Zeile und speichert sie ab
+            String line1 = br.readLine();
+            int testCases = 0;
+            while(line1 != null){
+                testCases = Integer.parseInt(line1);
             }
-            int testCases1 = Integer.parseInt(br.readLine());
             
-            String[] split2 = br.readLine().split(" ");
-            int proofes = Integer.parseInt(split2[0]);
-            int solutions = Integer.parseInt(split2[1]);
+            // liest n Zeilen und speichert die Werte ab
+            String[] lines = br.readLine().split(" ");
+            while(lines != null){
+                int proofes = Integer.parseInt(lines[0]);
+                int solutions = Integer.parseInt(lines[1]);
+            }
+            
+            
             
         } catch (FileNotFoundException ex) {
             System.out.println("FileNotFoundException");

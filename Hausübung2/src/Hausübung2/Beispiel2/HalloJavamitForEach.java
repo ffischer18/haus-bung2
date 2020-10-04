@@ -23,7 +23,10 @@ public class HalloJavamitForEach {
         }
         
         list.forEach((String s) -> System.out.println(s));
+        
         Consumer<String> consumer = (String s) -> System.out.println(s);
+        list.forEach(consumer);
+        
         list.forEach(System.out :: print);
     }
     
