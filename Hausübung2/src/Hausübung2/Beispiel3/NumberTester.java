@@ -49,6 +49,7 @@ public class NumberTester {
                 return false;
             }
         };
+        setOddEvenTester(oddTester);
 
         // Testet ob die Zahl eine Primzahl ist
         primeTester = (n)
@@ -65,6 +66,7 @@ public class NumberTester {
             }
             return true;
         };
+        setPrimeTester(primeTester);
 
         // Testet ob die Zahl ein Palindrom ist (vorwärt/rückwärts gelesen die gleiche zahl ergibt)
         palindromeTester = (n) -> {
@@ -88,6 +90,7 @@ public class NumberTester {
                 return false;
             }
         };
+        setPalindromeTester(palindromeTester);
 
         try (BufferedReader br = new BufferedReader(new InputStreamReader(new FileInputStream(new File(fileName))));) {
             int counter = 0; //zählt mit wieoft gelesen werden soll
