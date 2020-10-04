@@ -90,17 +90,19 @@ public class NumberTester {
         };
 
         try (BufferedReader br = new BufferedReader(new InputStreamReader(new FileInputStream(new File(fileName))));) {
+            int counter = 0; //zählt mit wieoft gelesen werden soll
+            
             // liest die erste Zeile und speichert sie ab
             String line1 = br.readLine();
             int testCases = 0;
             while (line1 != null) {
                 testCases = Integer.parseInt(line1);
+                if(counter == testCases){
+                    System.exit(0);
+                }
 
                 // liest n Zeilen und speichert die Werte ab
                 String lines = br.readLine();
-                if (lines == null) {
-                    System.exit(0);
-                }
 
                 String[] split = lines.split(" ");
                 int proofes = 0;
@@ -146,7 +148,7 @@ public class NumberTester {
                         System.out.println("Falsche überpüfung!");
                         break;
                 }
-
+                counter++;
             }
 
         } catch (FileNotFoundException ex) {
