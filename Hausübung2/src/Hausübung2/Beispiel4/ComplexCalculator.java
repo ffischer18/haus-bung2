@@ -11,28 +11,48 @@ package Hausübung2.Beispiel4;
  */
 public class ComplexCalculator extends AbstractCalculator{
 
-    public ComplexCalculator(CalculationOperation add, CalculationOperation substract, CalculationOperation multiply, CalculationOperation divide) {
-        super(add, substract, multiply, divide);
+    public ComplexCalculator() {
+        super( (Number a, Number b) -> {
+            Number n = new Number();
+            n.setA(a.getA() + b.getA());
+            n.setB(a.getB() + b.getB());
+            return n;
+        }, (Number a, Number b) -> {
+            Number n = new Number();
+            n.setA(a.getA() - b.getA());
+            n.setB(a.getB() - b.getB());
+            return n;
+        }, (Number a, Number b) -> {
+            Number n = new Number();
+            n.setA(a.getA() * b.getA() - a.getB() * b.getB());
+            n.setA(a.getA() * b.getB() + a.getB() * b.getA());
+            return n;
+        }, (Number a, Number b) -> {
+            Number n = new Number();
+            n.setA(a.getA() * b.getA() + a.getB() * b.getB() / b.getA() * b.getA() + b.getB() * b.getB());
+            n.setA(a.getA() * b.getB() - a.getB() * b.getA() / b.getA() * b.getA() + b.getB() * b.getB());
+            return n;
+        });
     }
 
     @Override
     public Number add(Number a, Number b) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        return this.add.calc(a, b);
     }
 
     @Override
     public Number substract(Number a, Number b) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        return this.substract.calc(a, b);
     }
 
     @Override
     public Number multiply(Number a, Number b) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        return this.multiply.calc(a, b);
     }
 
     @Override
     public Number divide(Number a, Number b) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        return this.divide.calc(a, b);
     }
     
 }
